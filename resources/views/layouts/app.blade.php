@@ -30,9 +30,16 @@
 
             <!-- Page Content -->
             <main>
+                @if (session()->has('message'))
+                <div class="p-4 mb-4 text-sm text-white rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400" role="alert">
+                    <span class="font-medium">{{ session('message') }}</span> 
+                </div>
+                @endif
                 {{ $slot }}
             </main>
         </div>
         @livewireScripts
+
+        @stack('scripts')
     </body>
 </html>

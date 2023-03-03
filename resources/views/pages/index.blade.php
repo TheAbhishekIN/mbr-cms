@@ -6,6 +6,6 @@
     </x-slot>
 
     <div class="py-12">
-        @livewire('cms.page')
+
     </div>
 </x-app-layout>

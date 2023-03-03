@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -12,6 +13,7 @@ class PageController extends Controller
      */
     public function index(): View
     {
+        $items = Page::where('parent_id', 0)->get();
         return view('pages.index');
     }
 
@@ -34,9 +36,18 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug1, string $slug2 = null, string $slug3 = null): View
     {
-        //
+        $slug = $slug1;
+        if($slug2){
+            $slug = $slug2;
+        }
+        if($slug3){
+            $slug = $slug3;
+        }
+        $page = Page::where('slug',$slug)->first();
+
+        return view('pages.show', compact('page'));
     }
 
     /**

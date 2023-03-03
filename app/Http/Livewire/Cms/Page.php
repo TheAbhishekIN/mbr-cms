@@ -32,7 +32,7 @@ class Page extends Component
     public function render()
     {
         return view('livewire.cms.page', [
-            'pages' => PageModel::where('title', 'like', '%'.$this->search.'%')->paginate(5),
-        ]);
+            'pages' => PageModel::where('title', 'like', '%'.$this->search.'%')->orderByDesc('id')->paginate(5),
+        ])->layout('layouts.app');
     }
 }
